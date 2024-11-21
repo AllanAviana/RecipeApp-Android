@@ -9,11 +9,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.recipeapp_android.presentation.screens.welcome.components.BottomImage
 import com.example.recipeapp_android.presentation.screens.welcome.components.CentralImage
 import com.example.recipeapp_android.presentation.screens.welcome.components.FeatureRow
 import com.example.recipeapp_android.presentation.screens.welcome.components.StartButton
 import com.example.recipeapp_android.presentation.screens.welcome.components.WelcomeText
+import com.example.recipeapp_android.presentation.viewmodel.RecipeViewModel
 
 @Composable
 fun WelcomeScreen(){
@@ -29,6 +31,9 @@ fun WelcomeScreen(){
                 )
             )
     ) {
+
+        val recipeViewModel: RecipeViewModel = viewModel()
+
         WelcomeText(modifier = Modifier.align(Alignment.TopCenter))
 
         CentralImage(modifier = Modifier.align(Alignment.Center))

@@ -17,7 +17,7 @@ fun BottomImage(modifier: Modifier = Modifier) {
         contentDescription = null,
         modifier = modifier
             .fillMaxWidth()
-            .height(350.dp),
+            .height(380.dp),
         contentScale = ContentScale.Crop
     )
 }
