@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavHostController
 import com.example.recipeapp_android.presentation.screens.welcome.components.BottomImage
 import com.example.recipeapp_android.presentation.screens.welcome.components.CentralImage
 import com.example.recipeapp_android.presentation.screens.welcome.components.FeatureRow
@@ -16,7 +17,7 @@ import com.example.recipeapp_android.presentation.screens.welcome.components.Wel
 import com.example.recipeapp_android.presentation.viewmodel.RecipeViewModel
 
 @Composable
-fun WelcomeScreen(recipeViewModel: RecipeViewModel) {
+fun WelcomeScreen(recipeViewModel: RecipeViewModel, navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -34,7 +35,7 @@ fun WelcomeScreen(recipeViewModel: RecipeViewModel) {
 
         CentralImage(modifier = Modifier.align(Alignment.Center))
 
-        StartButton(modifier = Modifier.align(Alignment.Center))
+        StartButton(modifier = Modifier.align(Alignment.Center), navController)
 
         FeatureRow(modifier = Modifier.align(Alignment.BottomCenter))
 

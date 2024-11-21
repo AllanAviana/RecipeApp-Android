@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.accompanist:accompanist-swiperefresh:0.19.0")
+    implementation ("com.github.MahboubehSeyedpour:jetpack-loading:1.1.0")
+
     val room_version = "2.6.1"
     // Room - Library for data persistence (simplified SQLite database)
     implementation("androidx.room:room-runtime:$room_version") // Main Room dependency to manage the database

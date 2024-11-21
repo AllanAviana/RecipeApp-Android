@@ -12,11 +12,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.navigation.NavHostController
 
 @Composable
-fun StartButton(modifier: Modifier = Modifier) {
+fun StartButton(modifier: Modifier = Modifier, navController: NavHostController) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {
+            navController.navigate("home_screen")
+        },
         modifier = modifier
             .padding(top = 260.dp)
             .zIndex(1f)
