@@ -18,7 +18,6 @@ class RecipeViewModel @Inject constructor(
         fetchRecipesByCountry("Canadian")
     }
 
-
     private fun fetchRecipesByCountry(country: String){
         viewModelScope.launch {
             val recipes = recipeRepository.getRecipesByCountry(country)
