@@ -19,9 +19,13 @@ class RecipeViewModel @Inject constructor(
     private val _recipes = MutableStateFlow<RecipeUiState<HomeUiState>>(RecipeUiState.Loading)
     val recipes = _recipes.asStateFlow()
 
+    private val _details = MutableStateFlow<DetailsUiState<Details>>(DetailsUiState.Loading)
+    val details = _details.asStateFlow()
+
 
     init {
         fetchRecipesByCountry()
+        fetchRecipeDescription("52772")
     }
 
      fun fetchRecipesByCountry() {
@@ -56,4 +60,55 @@ class RecipeViewModel @Inject constructor(
             }
         }
     }
+
+    fun fetchRecipeDescription(recipeId: String) {
+        viewModelScope.launch {
+            _details.value = DetailsUiState.Loading
+            try {
+                var currentDetails = Details()
+
+                val description = recipeRepository.getRecipeDescription(recipeId)
+                        Log.d("RecipeViewModel2", "Recipe Description: $description")
+
+                 currentDetails = Details(
+                    image = description.meals[0].strMealThumb,
+                    name = description.meals[0].strMeal,
+                    ingredients = listOfNotNull(
+                        description.meals[0].strIngredient1,
+                        description.meals[0].strIngredient2,
+                        description.meals[0].strIngredient3,
+                        description.meals[0].strIngredient4,
+                        description.meals[0].strIngredient5,
+                        description.meals[0].strIngredient6,
+                        description.meals[0].strIngredient7,
+                        description.meals[0].strIngredient8,
+                        description.meals[0].strIngredient9,
+                        description.meals[0].strIngredient10,
+                        description.meals[0].strIngredient11,
+                        description.meals[0].strIngredient12,
+                        description.meals[0].strIngredient13,
+                        description.meals[0].strIngredient14,
+                        description.meals[0].strIngredient15,
+                        description.meals[0].strIngredient16,
+                        description.meals[0].strIngredient17,
+                        description.meals[0].strIngredient18,
+                        description.meals[0].strIngredient19,
+                        description.meals[0].strIngredient20
+                    ),
+                    instructions = description.meals[0].strInstructions
+                )
+
+                _details.value = DetailsUiState.Success(currentDetails)
+                Log.d("RecipeViewModel2", "Current Details: $currentDetails")
+
+        }catch (e: Exception) {
+            _details.value = DetailsUiState.Error("Error fetching recipe description: ${e.message}")
+            Log.e("RecipeViewModel", "Error fetching recipe description", e)
+        }
+
+            }
+    }
+
+
+
 }

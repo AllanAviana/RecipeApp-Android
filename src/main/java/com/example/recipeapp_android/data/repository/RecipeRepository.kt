@@ -1,6 +1,7 @@
 package com.example.recipeapp_android.data.repository
 
 import com.example.recipeapp_android.data.api.RecipeApi
+import com.example.recipeapp_android.data.remote.model.DescriptionMealResponse
 import com.example.recipeapp_android.data.remote.model.MealsResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -10,12 +11,22 @@ class RecipeRepository @Inject constructor(
     private val recipeApi: RecipeApi
 ) {
 
-    suspend fun getRecipesByCountry(country: String): MealsResponse{
-        return withContext(Dispatchers.IO){
+    suspend fun getRecipesByCountry(country: String): MealsResponse {
+        return withContext(Dispatchers.IO) {
             try {
                 recipeApi.getRecipes(country)
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 MealsResponse(emptyList())
+            }
+        }
+    }
+
+    suspend fun getRecipeDescription(recipeId: String): DescriptionMealResponse {
+        return withContext(Dispatchers.IO) {
+            try {
+                recipeApi.getRecipeDescription(recipeId)
+            } catch (e: Exception) {
+                DescriptionMealResponse(emptyList())
             }
         }
     }
