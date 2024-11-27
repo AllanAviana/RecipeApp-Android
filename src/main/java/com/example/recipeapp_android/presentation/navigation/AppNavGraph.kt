@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.recipeapp_android.presentation.screens.details.RecipeDetailsScreen
 import com.example.recipeapp_android.presentation.screens.home.HomeScreen
 import com.example.recipeapp_android.presentation.screens.welcome.WelcomeScreen
 import com.example.recipeapp_android.presentation.viewmodel.RecipeViewModel
@@ -22,7 +23,10 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()){
             WelcomeScreen(recipeViewModel, navController)
         }
         composable("home_screen"){
-            HomeScreen(recipeViewModel)
+            HomeScreen(recipeViewModel, navController)
+        }
+        composable("details_screen"){
+            RecipeDetailsScreen(recipeViewModel)
         }
     }
 }

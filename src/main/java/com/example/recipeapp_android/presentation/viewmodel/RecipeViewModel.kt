@@ -1,5 +1,6 @@
 package com.example.recipeapp_android.presentation.viewmodel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -61,6 +62,7 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     fun fetchRecipeDescription(recipeId: String) {
         viewModelScope.launch {
             _details.value = DetailsUiState.Loading
@@ -108,7 +110,4 @@ class RecipeViewModel @Inject constructor(
 
             }
     }
-
-
-
 }

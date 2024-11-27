@@ -21,10 +21,18 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.recipeapp_android.presentation.viewmodel.RecipeViewModel
 
 @Composable
-fun RecipeCard(imageRes: String, title: String) {
+fun RecipeCard(
+    imageRes: String,
+    title: String,
+    recipeViewModel: RecipeViewModel,
+    id: String,
+    navController: NavHostController
+) {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(Color(0xFF761C1C)),
@@ -33,7 +41,10 @@ fun RecipeCard(imageRes: String, title: String) {
             .padding(vertical = 8.dp)
         ,
         elevation = CardDefaults.cardElevation(4.dp),
-        onClick = {}
+        onClick = {
+            recipeViewModel.fetchRecipeDescription(id)
+            navController.navigate("details_screen")
+        }
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),

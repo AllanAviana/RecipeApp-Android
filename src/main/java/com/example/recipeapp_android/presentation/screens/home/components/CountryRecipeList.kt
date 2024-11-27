@@ -13,10 +13,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.recipeapp_android.presentation.viewmodel.HomeUiState
+import com.example.recipeapp_android.presentation.viewmodel.RecipeViewModel
 
 @Composable
-fun CountryRecipeList(homeUiState: HomeUiState) {
+fun CountryRecipeList(
+    homeUiState: HomeUiState,
+    recipeViewModel: RecipeViewModel,
+    navController: NavHostController
+) {
 
     val countries = listOf("American", "Italian", "Mexican", "Japanese", "Chinese")
 
@@ -47,7 +53,10 @@ fun CountryRecipeList(homeUiState: HomeUiState) {
                 items(recipesForCountry) { recipe ->
                     RecipeCard(
                         imageRes = recipe.strMealThumb,
-                        title = recipe.strMeal
+                        title = recipe.strMeal,
+                        id = recipe.idMeal,
+                        recipeViewModel = recipeViewModel,
+                        navController = navController
                     )
                 }
             }
