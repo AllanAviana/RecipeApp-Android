@@ -40,6 +40,7 @@ import com.example.recipeapp_android.R
 import com.example.recipeapp_android.presentation.viewmodel.Details
 import com.example.recipeapp_android.presentation.viewmodel.DetailsUiState
 import com.example.recipeapp_android.presentation.viewmodel.RecipeViewModel
+import com.spr.jetpack_loading.components.indicators.PacmanIndicator
 
 @Composable
 fun RecipeDetailsScreen(recipeViewModel: RecipeViewModel) {
@@ -64,7 +65,26 @@ fun RecipeDetailsScreen(recipeViewModel: RecipeViewModel) {
 
 @Composable
 fun DetailsLoadingScreen() {
-    Column() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    colorStops = arrayOf(
+                        0.58f to Color(0xFF691919),
+                        1.0f to Color(0xFF993030)
+                    )
+                )
+            ),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        PacmanIndicator(
+            color = Color.White,
+            ballDiameter = 60f,
+            animationDuration = 1000,
+            canvasSize = 60.dp
+        )
 
     }
 }

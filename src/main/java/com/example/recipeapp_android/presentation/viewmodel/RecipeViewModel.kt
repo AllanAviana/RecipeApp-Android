@@ -66,6 +66,7 @@ class RecipeViewModel @Inject constructor(
     fun fetchRecipeDescription(recipeId: String) {
         viewModelScope.launch {
             _details.value = DetailsUiState.Loading
+            delay(5000)
             try {
                 var currentDetails = Details()
 
